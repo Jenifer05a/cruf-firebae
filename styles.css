@@ -1,276 +1,417 @@
+
+/* =========================
+   UAEMex Panel de Estudiantes
+   Diseño moderno y responsivo
+   ========================= */
+
+/* -------- Variables de tema -------- */
 :root {
-  --uaem-verde: #00522b;
-  --uaem-verde-oscuro: #01301a;
-  --uaem-dorado: #c9a648;
-  --uaem-crema: #f5efe1;
-  --bg-main: #f4f4f4;
-  --text-principal: #1f2933;
-  --text-secundario: #4b5563;
-  --borde-suave: #dde1e6;
+  --uaem-green: #0a7a33;         /* Verde principal (UAEM) */
+  --uaem-green-dark: #085c27;    /* Hover/oscuro */
+  --uaem-amber: #c7a106;         /* Acento */
+  --bg: #f5f6f8;                 /* Fondo general */
+  --card: #ffffff;               /* Fondo de tarjetas */
+  --text: #23262a;               /* Texto base */
+  --muted: #6c7280;              /* Texto secundario */
+  --border: #e2e6ea;             /* Bordes suaves */
+  --shadow: 0 10px 25px rgba(24, 24, 24, 0.08);
+  --radius: 12px;
 }
 
-* {
+/* -------- Modo oscuro (opcional) -------- */
+body.dark {
+  --bg: #121416;
+  --card: #1b1f24;
+  --text: #e6e9ef;
+  --muted: #a3a9b6;
+  --border: #2a3139;
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* -------- Base -------- */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
 }
 
 body {
   margin: 0;
-  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
-  background: var(--bg-main);
-  color: var(--text-principal);
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.5;
 }
 
+/* -------- Header -------- */
 .uaem-header {
-  background: linear-gradient(90deg, var(--uaem-verde-oscuro), var(--uaem-verde));
-  color: white;
-  padding: 14px 32px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(90deg, var(--uaem-green) 0%, var(--uaem-green-dark) 100%);
+  color: #fff;
+  padding: 1rem 2rem;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  align-items: center;
 }
 
 .uaem-logo {
   display: flex;
-  flex-direction: column;
+  gap: 0.75rem;
+  align-items: baseline;
 }
 
-.uaem-siglas {
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-size: 18px;
+.uaem-logo .uaem-siglas {
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  font-size: 1.6rem;
 }
 
-.uaem-sub {
-  font-weight: 400;
-  font-size: 13px;
+.uaem-logo .uaem-sub {
+  font-weight: 300;
   opacity: 0.9;
 }
 
 .uaem-info {
   display: flex;
-  gap: 8px;
+  gap: 0.5rem;
   flex-wrap: wrap;
-  justify-content: flex-end;
 }
 
 .uaem-badge {
-  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  padding: 0.35rem 0.7rem;
   border-radius: 999px;
-  background: var(--uaem-dorado);
-  color: #1f2933;
-  font-size: 12px;
   font-weight: 600;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
 }
 
 .uaem-badge-outline {
   background: transparent;
-  color: #f9fafb;
-  border: 1px solid rgba(249, 250, 251, 0.7);
+  border-color: rgba(255, 255, 255, 0.55);
 }
 
+/* -------- Layout principal -------- */
 .layout {
   max-width: 1200px;
-  margin: 24px auto 40px;
-  padding: 0 16px;
+  margin: 2rem auto;
+  padding: 0 1rem;
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
-  grid-template-rows: auto auto;
-  gap: 20px;
-}
-
-.card {
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 18px 18px 16px;
-  border: 1px solid var(--borde-suave);
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1.25rem;
 }
 
 .card-full {
   grid-column: 1 / -1;
 }
 
+/* Responsivo */
+@media (max-width: 980px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -------- Cards -------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+}
+
 .card h2 {
-  margin: 0 0 4px;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--uaem-verde-oscuro);
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
 }
 
 .card-subtitle {
-  margin: 0 0 14px;
-  font-size: 13px;
-  color: var(--text-secundario);
+  margin-top: 0.35rem;
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 
+/* -------- Formulario -------- */
 .form-grid {
+  margin-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px 16px;
-  margin-top: 8px;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
 }
 
+/* Distribución responsiva: 6 columnas desktop, 12 móvil */
 .form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group label {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-secundario);
-  margin-bottom: 4px;
-}
-
-input,
-select {
-  padding: 7px 9px;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
-  font-size: 13px;
-  outline: none;
-  transition: border 0.15s, box-shadow 0.15s;
-}
-
-input:focus,
-select:focus {
-  border-color: var(--uaem-verde);
-  box-shadow: 0 0 0 2px rgba(0, 82, 43, 0.16);
+  grid-column: span 6;
 }
 
 .form-divider {
   grid-column: 1 / -1;
-  margin-top: 4px;
+  margin: 0.5rem 0 0.25rem;
+  border-top: 1px dashed var(--border);
 }
 
 .form-divider h3 {
-  font-size: 14px;
-  margin: 0;
-  color: var(--uaem-verde);
+  margin: 0.75rem 0 0;
+  font-size: 1rem;
+  color: var(--muted);
+  font-weight: 600;
 }
 
+/* En móviles, cada campo ocupa todo el ancho */
+@media (max-width: 640px) {
+  .form-group {
+    grid-column: 1 / -1;
+  }
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 0.75rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.25s ease;
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+  color: var(--muted);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  border-color: var(--uaem-green);
+  box-shadow: 0 0 0 4px rgba(10, 122, 51, 0.12);
+  background: rgba(10, 122, 51, 0.02);
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  margin: 0;
+}
+
+/* -------- Acciones del formulario -------- */
 .form-actions {
   grid-column: 1 / -1;
   display: flex;
-  gap: 10px;
-  margin-top: 4px;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
 }
 
 .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 14px;
-  border-radius: 999px;
+  appearance: none;
   border: none;
-  font-size: 13px;
-  font-weight: 600;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: transform 0.08s ease, box-shadow 0.08s ease,
-    background-color 0.12s ease;
+  transition: transform 0.08s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
 }
 
 .btn-primary {
-  background: var(--uaem-verde);
-  color: #f9fafb;
-  box-shadow: 0 2px 6px rgba(0, 82, 43, 0.3);
+  background: var(--uaem-green);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(10, 122, 51, 0.2);
 }
 
 .btn-primary:hover {
-  background: var(--uaem-verde-oscuro);
-  transform: translateY(-1px);
+  background: var(--uaem-green-dark);
+  box-shadow: 0 10px 22px rgba(10, 122, 51, 0.28);
 }
 
 .btn-secondary {
-  background: #ffffff;
-  color: var(--uaem-verde);
-  border: 1px solid var(--uaem-verde);
+  background: #e9edf2;
+  color: #1f242b;
+  border: 1px solid var(--border);
+}
+
+body.dark .btn-secondary {
+  background: #2a2f37;
+  color: #e6e9ef;
 }
 
 .btn-secondary:hover {
-  background: #f1f5f9;
+  background: #dfe4ea;
 }
 
-.btn-table {
-  padding: 4px 9px;
-  font-size: 11px;
-  border-radius: 999px;
-  margin-right: 4px;
-}
-
-.btn-progreso {
-  background: var(--uaem-dorado);
-  color: #1f2933;
-}
-
-.btn-editar {
-  background: #2563eb;
-  color: #f9fafb;
-}
-
-.btn-eliminar {
-  background: #dc2626;
-  color: #f9fafb;
-}
-
+/* -------- Tabla de estudiantes -------- */
 .table-wrapper {
-  margin-top: 8px;
-  border-radius: 10px;
-  border: 1px solid #e5e7eb;
+  margin-top: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   overflow: hidden;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  background: var(--card);
 }
 
 thead {
-  background: #f9fafb;
+  background: rgba(10, 122, 51, 0.08);
 }
 
-th,
-td {
-  padding: 8px 10px;
+body.dark thead {
+  background: rgba(10, 122, 51, 0.15);
+}
+
+th, td {
   text-align: left;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
 }
 
 th {
-  font-weight: 600;
-  color: var(--text-secundario);
-  border-bottom: 1px solid #e5e7eb;
-}
-
-tbody tr:nth-child(even) {
-  background: #f9fafb;
+  font-weight: 700;
+  color: var(--text);
 }
 
 tbody tr:hover {
-  background: #eef2ff;
+  background: rgba(10, 122, 51, 0.06);
 }
 
+body.dark tbody tr:hover {
+  background: rgba(10, 122, 51, 0.12);
+}
+
+/* Celda de acciones (editar/eliminar) */
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border: 1px solid var(--border);
+  background: #f7f9fc;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.action-btn:hover {
+  background: #eef3f9;
+}
+
+.action-edit {
+  color: var(--uaem-green);
+  border-color: rgba(10, 122, 51, 0.35);
+  background: rgba(10, 122, 51, 0.06);
+}
+
+.action-edit:hover {
+  background: rgba(10, 122, 51, 0.12);
+}
+
+.action-delete {
+  color: #b41717;
+  border-color: rgba(180, 23, 23, 0.35);
+  background: rgba(180, 23, 23, 0.07);
+}
+
+.action-delete:hover {
+  background: rgba(180, 23, 23, 0.12);
+}
+
+/* -------- Gráfica -------- */
 .grafica-container {
-  margin-top: 8px;
-  padding: 8px;
-  background: #f9fafb;
-  border-radius: 10px;
-  border: 1px solid #e5e7eb;
+  margin-top: 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  min-height: 320px;
+  display: grid;
+  place-items: center;
 }
 
+/* El canvas será responsivo automáticamente con Chart.js */
+canvas#graficaProgreso {
+  max-width: 100%;
+}
+
+/* -------- Footer -------- */
 .uaem-footer {
+  margin-top: 2rem;
+  background: linear-gradient(90deg, var(--uaem-green-dark), var(--uaem-green));
+  color: #fff;
+  padding: 1rem 2rem;
   text-align: center;
-  font-size: 11px;
-  color: var(--text-secundario);
-  padding: 10px 16px 16px;
+  font-weight: 600;
 }
 
-@media (max-width: 900px) {
-  .layout {
-    grid-template-columns: 1fr;
+/* -------- Utilidades -------- */
+.card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Texto pequeño y atenuado */
+.muted {
+  color: var(--muted);
+}
+
+/* Espaciado vertical */
+.spacer {
+  height: 1rem;
+}
+
+/* -------- Accesibilidad / Focus visible -------- */
+:focus-visible {
+  outline: 3px solid rgba(10, 122, 51, 0.35);
+  outline-offset: 2px;
+}
+
+/* -------- Scrollbar (WebKit) -------- */
+@media (min-width: 480px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.06);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(10, 122, 51, 0.4);
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(10, 122, 51, 0.6);
   }
 }
